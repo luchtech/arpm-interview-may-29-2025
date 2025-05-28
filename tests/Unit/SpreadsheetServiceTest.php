@@ -2,25 +2,25 @@
 
 namespace Tests\Unit\Services;
 
-use Illuminate\Support\Facades\Bus;
-use Tests\TestCase;
-use App\Services\SpreadsheetService;
-use App\Models\Product;
 use App\Jobs\ProcessProductImage;
+use App\Models\Product;
+use App\Services\SpreadsheetService;
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Queue;
 use Mockery;
+use Tests\TestCase;
 
 class SpreadsheetServiceTest extends TestCase
 {
     protected SpreadsheetService $spreadsheetService;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
-        $this->spreadsheetService = new SpreadsheetService();
+        $this->spreadsheetService = new SpreadsheetService;
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         Mockery::close();
         parent::tearDown();

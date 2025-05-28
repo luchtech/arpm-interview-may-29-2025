@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Models\CartItem;
+use App\Models\Order;
 
 class OrderController extends Controller
 {
@@ -16,7 +16,7 @@ class OrderController extends Controller
                 $orderData[] = [
                     'order_id' => $order->id,
                     'customer_name' => $order->customer->name,
-                    'total_amount' => $order->items->map(fn(CartItem $item) => $item->price * $item->quantity)->sum(),
+                    'total_amount' => $order->items->map(fn (CartItem $item) => $item->price * $item->quantity)->sum(),
                     'items_count' => $order->items->count(),
                     'last_added_to_cart' => $order->items()->latest()->first()->created_at,
                     'completed_order_exists' => $order->status == 'completed',
@@ -28,4 +28,3 @@ class OrderController extends Controller
         return view('orders.index', ['orders' => $orderData]);
     }
 }
-
